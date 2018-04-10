@@ -1,0 +1,73 @@
+body,
+html {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  background-color: #e1e1e1;
+}
+
+.map svg {
+  height: 70%;
+  width: 70%;
+}
+.map path {
+  transition: fill .25s ease-in-out;
+}
+.map .st0 {
+  fill: rgba(255, 255, 255, 0);
+}
+.map .st2 {
+  fill: #dedede;
+}
+.map .st1 {
+  fill: #dedede;
+}
+.map .region {
+  cursor: pointer;
+}
+.map .is-active .st1,
+.map .is-active .st2 {
+  fill: #999;
+}
+
+.map-tooltip {
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 0 5px 0;
+  box-sizing: border-box;
+  display: none;
+  opacity: 0;
+  overflow: visible;
+  padding: 1.5em;
+  position: absolute;
+  transition: opacity .5s ease-in-out;
+  z-index: 1000;
+}
+.map-tooltip.is-active {
+  display: block;
+  opacity: 0;
+}
+.map-tooltip.is-visible {
+  opacity: 1;
+}
+.map-tooltip::after, .map-tooltip::before {
+  border: 15px solid transparent;
+  border-top-color: #fff;
+  border-top-width: 20px;
+  content: '';
+  display: block;
+  height: 0;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -2px;
+  position: absolute;
+  top: 100%;
+  width: 0;
+}
+.map-tooltip h1 {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.map-tooltip button {
+  display: block;
+}
