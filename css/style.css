@@ -5,6 +5,9 @@ html {
   width: 100%;
   background-color: #e1e1e1;
 }
+.st3{
+  fill:#FFFF99 !important;
+}
 
 .map svg {
   height: 70%;
@@ -17,7 +20,7 @@ html {
   fill: rgba(255, 255, 255, 0);
 }
 .map .st2 {
-  fill: #dedede;
+  fill: #999;
 }
 .map .st1 {
   fill: #dedede;

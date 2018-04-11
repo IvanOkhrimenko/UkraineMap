@@ -18,10 +18,12 @@ function positionTooltip(region, tooltip) {
 }
 
 function showTooltip(region, tooltip) {
-  tooltip.classList.add('is-active');
-  region.classList.add('is-active');
+  tooltip.classList.add('is-active', 'st3');
+  region.classList.add('is-active', 'st3');
   positionTooltip(region, tooltip);
   tooltip.classList.add('is-visible');
+  region.classList.remove('is-actve');
+  
   isTooltip = true;
   return isTooltip;
 };
@@ -31,7 +33,7 @@ function showTooltip(region, tooltip) {
 function hideTooltip(region, tooltip) {
   tooltip.classList.remove('is-active');
   tooltip.classList.remove('is-visible');
-  region.classList.remove('is-active');
+  region.classList.remove('is-active', 'st3');
   isTooltip = false;
   return isTooltip;
 }
@@ -43,13 +45,14 @@ function activateTooltip(event) {
   var region = document.querySelector('#' + targetID);
   var tooltip = document.querySelector('.map-tooltip[data-region="' + targetID + '"]');
   var tooltipIsActive = tooltip.classList.contains('is-active');
+  console.log(document.getElementById(targetID));
   
 
   // This creates a timeout we can interrupt later for showing the tooltips
   function delayedShow(showDelay) {
     showTimeout = window.setTimeout(function() {
-      console.log(document.getElementById(targetID));
-       document.getElementById(targetID).style.fill= "#FFFF99";
+      // console.log(document.getElementById(targetID));
+      //  document.getElementById(targetID).style.fill= "#FFFF99";
       showTooltip(region, tooltip);
       container.addEventListener('scroll', function(event) {
         positionTooltip(region, tooltip);
@@ -96,7 +99,7 @@ function deactivateTooltip(event) {
   var region = document.querySelector('#' + targetID);
   var tooltip = document.querySelector('.map-tooltip[data-region="' + targetID + '"]');
   var tooltipIsActive = tooltip.classList.contains('is-active');
-  document.getElementById(targetID).style.fill= "#fdfcea"
+  // document.getElementById(targetID).style.fill= "#fdfcea"
   // This creates a timeout we can interrupt later for hiding the tooltips
   function delayHide() {
     hideTimeout = window.setTimeout(function() {
