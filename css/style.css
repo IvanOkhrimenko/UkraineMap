@@ -7,11 +7,19 @@ html {
 }
 .st3{
   fill:#FFFF99 !important;
+  
 }
-
+.st4{
+  background-color: #FFFF99 !important;
+}
+.container-fluid{
+float: left;
+}
 .map svg {
+  position: relative;
   height: 70%;
-  width: 70%;
+  width: 75%;
+  float: left;
 }
 .map path {
   transition: fill .25s ease-in-out;
@@ -44,13 +52,15 @@ html {
   position: absolute;
   transition: opacity .5s ease-in-out;
   z-index: 1000;
+  
+   
 }
 .map-tooltip.is-active {
   display: block;
-  opacity: 0;
+  opacity: 0.7;
 }
 .map-tooltip.is-visible {
-  opacity: 1;
+  opacity: 0.9;
 }
 .map-tooltip::after, .map-tooltip::before {
   border: 15px solid transparent;

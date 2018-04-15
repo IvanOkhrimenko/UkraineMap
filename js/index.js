@@ -62,11 +62,16 @@ window.onload = function () {
 
   function activateTooltip(event) {
     var targetID = event.currentTarget.id || event.currentTarget.dataset.region;
-    console.log(parseInt(targetID));
     var region = document.querySelector('#' + targetID);
-    console.log(region);
     var tooltip = document.querySelector('.map-tooltip[data-region="' + targetID + '"]');
     var tooltipIsActive = tooltip.classList.contains('is-active');
+
+    var tableIs = document.getElementById(targetID+1);
+    console.log(tableIs);
+    tableIs.classList.add( 'st4');
+  
+   
+
 
 
 
@@ -121,6 +126,8 @@ window.onload = function () {
     var region = document.querySelector('#' + targetID);
     var tooltip = document.querySelector('.map-tooltip[data-region="' + targetID + '"]');
     var tooltipIsActive = tooltip.classList.contains('is-active');
+    var tableIs = document.getElementById(targetID+1);
+    tableIs.classList.remove( 'st4');
     // document.getElementById(targetID).style.fill= "#fdfcea"
     // This creates a timeout we can interrupt later for hiding the tooltips
     function delayHide() {
@@ -146,19 +153,23 @@ window.onload = function () {
   }
 
   // Grab our tooltips and bind our events
+  
 
+  
+
+  
   for (var i = 0; i < regions.length; i++) {
     var currentRegion = regions[i];
     var section = document.createElement('section');
     section.setAttribute('data-region', currentRegion.id);
     document.body.append(section);
-    var h1 = document.createElement('h1');
-    h1.append(arrayAreas[i]);
-    var button = document.createElement('button')
-    button.append("Do something")
+    var h5 = document.createElement('h5');
+    h5.append(arrayAreas[i]);
+    // var button = document.createElement('button')
+    // button.append("Do something")
 
     // вставить в параграф текстовый и обычный узлы
-    section.append(h1, button);
+    section.append(h5);
 
     // IE Doesn't support classList on SVG elements, so provide a fallback override. Maybe a pollyfill would be good here
     if (currentRegion.classList == null) {
@@ -200,26 +211,67 @@ window.onload = function () {
     }
 
   }
-  // window.onload = function addSection() {
+ 
+  var AREAS = [
+    {"№":"1","Область":'Вінницька',"Кількість округів":8, id:'path7227'},
+    {"№":"2","Область":'Волинська',"Кількість округів":5, id:'path7241'},
+    {"№":"3","Область":'Дніпропетровська',"Кількість округів":17, id:'path7083'},
+    {"№":"4","Область":'Донецька',"Кількість округів":21, id:'path7067'},
+    {"№":"5","Область":'Житомирська',"Кількість округів":6, id:'path7229'},
+    {"№":"6","Область":'Закарпатська',"Кількість округів":6, id:'path7247'},
+    {"№":"7","Область":'Запорізька',"Кількість округів":9, id:'path7075'},
+    {"№":"8","Область":'Івано-Франківська',"Кількість округів":7, id:'path7239'},
+    {"№":"9","Область":'Київська',"Кількість округів":9, id:'path7183'},
+    {"№":"10","Область":'Кіровоградська',"Кількість округів":5, id:'path7147'},
+    {"№":"11","Область":'Луганська',"Кількість округів":11, id:'path7065'},
+    {"№":"12","Область":'Львівська',"Кількість округів":12, id:'path7243'},
+    {"№":"13","Область":'Миколаївська',"Кількість округів":6, id:'path7135'},
+    {"№":"14","Область":'Одеська',"Кількість округів":11, id:'path7223'},
+    {"№":"15","Область":'Полтавська',"Кількість округів":8, id:'path7103'},
+    {"№":"16","Область":'Рівненська',"Кількість округів":5, id:'path7233'},
+    {"№":"17","Область":'Сумська',"Кількість округів":6, id:'path7079'},
+    {"№":"18","Область":'Тернопільська',"Кількість округів":5, id:'path7235'},
+    {"№":"19","Область":'Харківська',"Кількість округів":14, id:'path7071'},
+    {"№":"20","Область":'Херсонська',"Кількість округів":5, id:'path7111'},
+    {"№":"21","Область":'Хмельницька',"Кількість округів":7, id:'path7231'},
+    {"№":"22","Область":'Черкаська',"Кількість округів":7, id:'path7149'},
+    {"№":"23","Область":'Чернівецька',"Кількість округів":4, id:'path7237'},
+    {"№":"24","Область":'Чернігівська ',"Кількість округів":6, id:'path7129'},
 
-  //   for (var i = 0; i<=regions.length; i++){
-  //     var currRegion = regions[i];
-  //     console.log(i ,currRegion.id);
-  //   var section = document.createElement('section');
-  //   section.setAttribute('data-region',currentRegion)
-  //   tooltip.append(section);
-
-
-  //   var h1 = document.createElement('h1');
-  //   h1.append("Region Tooltip " + i);
-  //   var button = document.createElement('button')
-  //   button.append("do something")
-
-  //   // вставить в параграф текстовый и обычный узлы
-  //   section.append(h1, button);
-
-  //   // добавить элемент после <p>
-  //   // p.after(document.createElement('hr'))
-  //   }
-  // }
+  ];	
+  
+  function buildTable(data) {
+    console.log(regions);
+    var table = document.createElement("table");
+    table.className="table table-striped table-bordered table-hover table-condensed";
+    var thead = document.createElement("thead");
+    var tbody = document.createElement("tbody");
+    var headRow = document.createElement("tr");
+    ["№","Область","Кількість округів"].forEach(function(el) {
+      var th=document.createElement("th");
+      th.appendChild(document.createTextNode(el));
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead); 
+    var areasNew = AREAS.map(function(name,index){
+      var tr = document.createElement("tr");
+      console.log(data[index].id+1);
+       tr.setAttribute('id', data[index].id+1);
+      delete name.id;
+    
+      for (var o in name) {
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(name[o]))
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr); 
+    });
+    // data.forEach(function(el,index) {
+    //   tr.setAttribute('class', el.id)
+    // });
+    table.appendChild(tbody);             
+    return table;
+  }
+  document.getElementById("table").appendChild(buildTable(AREAS));
 }
