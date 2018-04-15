@@ -13,7 +13,11 @@ html {
   background-color: #FFFF99 !important;
 }
 .container-fluid{
-font-size: 14px;
+  margin-top: 20px;
+width: 25%;
+float: right; 
+font-size: 15px;
+
 }
 .map svg {
   position: relative;
