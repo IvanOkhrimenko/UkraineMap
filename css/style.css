@@ -88,3 +88,16 @@ font-size: 15px;
 .map-tooltip button {
   display: block;
 }
+
+@media only screen 
+and (max-device-width : 667px) {
+  .map svg {
+    height: 70%;
+    width: 100%;
+  }
+  .container-fluid{
+  font-size: 15px;
+  width: 100%;}
+  
+
+  }
